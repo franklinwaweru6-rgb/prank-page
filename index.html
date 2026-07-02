@@ -1,1 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Alert</title>
 
+<style>
+body{
+    margin:0;
+    background:#000;
+    color:#00ff00;
+    font-family:Consolas, monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+    overflow:hidden;
+}
+
+#container{
+    max-width:800px;
+    padding:20px;
+}
+
+h1{
+    color:red;
+    font-size:60px;
+    margin-bottom:20px;
+    text-shadow:0 0 20px red;
+}
+
+#countdown{
+    font-size:70px;
+    color:white;
+    margin:20px 0;
+}
+
+#status{
+    font-size:22px;
+    line-height:1.8;
+    color:#00ff00;
+}
+
+.final{
+    color:white;
+    font-size:45px;
+    animation:pop 0.8s ease;
+}
+
+@keyframes pop{
+    0%{transform:scale(0.5);opacity:0;}
+    100%{transform:scale(1);opacity:1;}
+}
+</style>
+
+</head>
+<body>
+
+<div id="container">
+    <h1>⚠️ YOU'VE BEEN HACKED ⚠️</h1>
+    <div id="countdown">5</div>
+    <div id="status">Initializing...</div>
+</div>
+
+<script>
+
+let count = 5;
+
+const messages = [
+"Connecting to Instagram servers...",
+"Downloading group chats...",
+"Scanning embarrassing photos...",
+"Decrypting passwords...",
+"Almost done..."
+];
+
+const countdown = document.getElementById("countdown");
+const status = document.getElementById("status");
+
+status.innerHTML = messages[0];
+
+const timer = setInterval(()=>{
+
+    count--;
+
+    if(count > 0){
+        countdown.innerHTML = count;
+        status.innerHTML = messages[5-count];
+    }else{
+
+        clearInterval(timer);
+
+        document.getElementById("container").innerHTML = `
+            <div class="final">
+                😴 Nah...<br><br>
+                I'm too tired to hack you right now.<br><br>
+                🥱🥱🥱
+            </div>
+        `;
+    }
+
+},1000);
+
+</script>
+
+</body>
+</html>
